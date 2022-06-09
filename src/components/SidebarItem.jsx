@@ -1,10 +1,15 @@
 import { Flex, Icon, Link, useColorModeValue } from "@chakra-ui/react";
 
-const NavItem = ({ icon, children, routerLink, ...rest }) => {
+const SidebarItem = ({ icon, children, ...rest }) => {
   const color = useColorModeValue("gray.600", "gray.300");
 
   return (
-    <Link as={routerLink} style={{ textDecoration: "none" }}>
+    <Link
+      fontWeight="semibold"
+      style={{ textDecoration: "none" }}
+      _activeLink={{ color: "blue.500", fontWeight: "bold" }}
+      {...rest}
+    >
       <Flex
         align="center"
         px="4"
@@ -17,9 +22,7 @@ const NavItem = ({ icon, children, routerLink, ...rest }) => {
           color: useColorModeValue("gray.900", "gray.200"),
         }}
         role="group"
-        fontWeight="semibold"
         transition=".15s ease"
-        {...rest}
       >
         {icon && (
           <Icon
@@ -37,4 +40,4 @@ const NavItem = ({ icon, children, routerLink, ...rest }) => {
   );
 };
 
-export default NavItem;
+export default SidebarItem;

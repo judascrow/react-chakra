@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { MdKeyboardArrowRight } from "react-icons/md";
-import { Link as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink } from "react-router-dom";
 
 import SidebarItem from "./SidebarItem";
 import { menu } from "../configs/Menu";
@@ -56,7 +56,7 @@ const Sidebar = (props) => {
             <SidebarItem
               key={index}
               icon={item.icon}
-              RouterLink={RouterLink}
+              as={RouterLink}
               to={"/" + item.title.toLowerCase()}
             >
               {item.title}
@@ -73,8 +73,8 @@ const Sidebar = (props) => {
               </SidebarItem>
               <Collapse in={subMenu.isOpen}>
                 {item.sub.map((sub, i) => (
-                  <SidebarItem key={i} pl="12" py="2">
-                    {sub.title}
+                  <SidebarItem key={i}>
+                    <Text pl="8">{sub.title}</Text>
                   </SidebarItem>
                 ))}
               </Collapse>

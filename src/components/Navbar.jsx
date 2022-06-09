@@ -45,7 +45,6 @@ const Navbar = ({ sidebar }) => {
                 <Text fontSize="sm" fontWeight="semibold">
                   ธงชัย สมตัว
                 </Text>
-                <Text fontSize="xs">นักวิชาการคอมพิวเตอร์ปฏิบัติการ</Text>
               </Box>
             </Flex>
           </MenuButton>
