@@ -1,11 +1,17 @@
 import {
   Avatar,
+  Box,
+  Button,
   Flex,
   Icon,
   IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaBell } from "react-icons/fa";
 import { FiMenu } from "react-icons/fi";
 
 const Navbar = ({ sidebar }) => {
@@ -16,7 +22,7 @@ const Navbar = ({ sidebar }) => {
       justify="space-between"
       w="full"
       px="4"
-      bg={useColorModeValue("blue.400", "gray.800")}
+      bg={useColorModeValue("blue.500", "gray.800")}
       borderBottomWidth="1px"
       borderColor={useColorModeValue("inherit", "gray.700")}
       h="14"
@@ -29,10 +35,26 @@ const Navbar = ({ sidebar }) => {
         colorScheme="blue"
       />
       <Flex px="4" py="5" align="center"></Flex>
-
-      <Flex align="center">
-        <Icon color="white" as={FaBell} cursor="pointer" />
-        <Avatar ml="4" size="sm" name="thongchai" cursor="pointer" mr={3} />
+      <Flex align="center" mr={4}>
+        {/* <Icon as={FaBell} cursor="pointer" mr={5} /> */}
+        <Menu isLazy>
+          <MenuButton colorScheme="inherit" as={Button}>
+            <Flex align="center" color="gray.100">
+              <Avatar size="sm" name="thongchai" cursor="pointer" />
+              <Box ml="3" align="left">
+                <Text fontSize="sm" fontWeight="semibold">
+                  ธงชัย สมตัว
+                </Text>
+                <Text fontSize="xs">นักวิชาการคอมพิวเตอร์ปฏิบัติการ</Text>
+              </Box>
+            </Flex>
+          </MenuButton>
+          <MenuList>
+            <MenuItem>Profile</MenuItem>
+            <MenuItem>Change Password</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Flex>
   );

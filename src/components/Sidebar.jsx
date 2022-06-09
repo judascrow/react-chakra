@@ -7,16 +7,14 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaClipboardCheck, FaRss } from "react-icons/fa";
-import { AiFillGift } from "react-icons/ai";
-import { BsGearFill } from "react-icons/bs";
-import { HiCode, HiCollection } from "react-icons/hi";
-import { MdHome, MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { Link as RouterLink } from "react-router-dom";
 
 import SidebarItem from "./SidebarItem";
+import { menu } from "../configs/Menu";
 
-const SidebarContent = (props) => {
-  const integrations = useDisclosure();
+const Sidebar = (props) => {
+  const subMenu = useDisclosure();
 
   return (
     <Box
@@ -53,34 +51,39 @@ const SidebarContent = (props) => {
         color="gray.600"
         aria-label="Main Navigation"
       >
-        <SidebarItem icon={MdHome}>Home</SidebarItem>
-        <SidebarItem icon={FaRss}>Articles</SidebarItem>
-        <SidebarItem icon={HiCollection}>Collections</SidebarItem>
-        <SidebarItem icon={FaClipboardCheck}>Checklists</SidebarItem>
-        <SidebarItem icon={HiCode} onClick={integrations.onToggle}>
-          Integrations
-          <Icon
-            as={MdKeyboardArrowRight}
-            ml="auto"
-            transform={integrations.isOpen && "rotate(90deg)"}
-          />
-        </SidebarItem>
-        <Collapse in={integrations.isOpen}>
-          <SidebarItem pl="12" py="2">
-            Shopify
-          </SidebarItem>
-          <SidebarItem pl="12" py="2">
-            Slack
-          </SidebarItem>
-          <SidebarItem pl="12" py="2">
-            Zapier
-          </SidebarItem>
-        </Collapse>
-        <SidebarItem icon={AiFillGift}>Changelog</SidebarItem>
-        <SidebarItem icon={BsGearFill}>Settings</SidebarItem>
+        {menu.map((item, index) =>
+          item.sub === undefined ? (
+            <SidebarItem
+              key={index}
+              icon={item.icon}
+              RouterLink={RouterLink}
+              to={"/" + item.title.toLowerCase()}
+            >
+              {item.title}
+            </SidebarItem>
+          ) : (
+            <div key={index}>
+              <SidebarItem icon={item.icon} onClick={subMenu.onToggle}>
+                {item.title}
+                <Icon
+                  as={MdKeyboardArrowRight}
+                  ml="auto"
+                  transform={subMenu.isOpen && "rotate(90deg)"}
+                />
+              </SidebarItem>
+              <Collapse in={subMenu.isOpen}>
+                {item.sub.map((sub, i) => (
+                  <SidebarItem key={i} pl="12" py="2">
+                    {sub.title}
+                  </SidebarItem>
+                ))}
+              </Collapse>
+            </div>
+          )
+        )}
       </Flex>
     </Box>
   );
 };
 
-export default SidebarContent;
+export default Sidebar;

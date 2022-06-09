@@ -6,11 +6,10 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   const sidebar = useDisclosure();
   return (
     <Box
@@ -34,7 +33,16 @@ const Layout = () => {
 
         <Box as="main" p="4">
           {/* Add content here, remove div below  */}
-          <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96" />
+          <Box
+            bg="white"
+            boxShadow="base"
+            rounded="md"
+            overflow="hidden"
+            w="full"
+            p={4}
+          >
+            {children}
+          </Box>
         </Box>
       </Box>
     </Box>
