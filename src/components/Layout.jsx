@@ -6,6 +6,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 
@@ -41,7 +42,7 @@ const Layout = ({ children }) => {
             w="full"
             p={4}
           >
-            {children}
+            <Outlet />
           </Box>
         </Box>
       </Box>

@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Icon,
   IconButton,
   Menu,
   MenuButton,
@@ -13,8 +12,15 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { FiMenu } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ sidebar }) => {
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    navigate("/login");
+  };
+
   return (
     <Flex
       as="header"
@@ -51,7 +57,7 @@ const Navbar = ({ sidebar }) => {
           <MenuList>
             <MenuItem>Profile</MenuItem>
             <MenuItem>Change Password</MenuItem>
-            <MenuItem>Logout</MenuItem>
+            <MenuItem onClick={logout}>Logout</MenuItem>
           </MenuList>
         </Menu>
       </Flex>

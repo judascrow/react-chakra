@@ -8,7 +8,7 @@ export const menu = [
     icon: MdHome,
   },
   {
-    title: "Products",
+    title: "Budget",
     icon: FaBoxOpen,
   },
   {
